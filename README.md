@@ -15,7 +15,12 @@ This is a application built based on Node.js command-line that takes in informat
 ---
 
 ## Link to video
-![Video]()
+![Video](https://drive.google.com/file/d/1DAaQzVgpOiR3OFPEzH2y7yuUpu9DSsJR/view)
+
+
+---
+
+Starter Code was given by Kevin which included HTML templates, the tests and htmlRenderer.js file. 
 
 ---
 
