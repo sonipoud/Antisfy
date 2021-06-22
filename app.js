@@ -11,7 +11,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-//Manager
 const employees = () => {
     inquirer.prompt([
         {
@@ -22,13 +21,13 @@ const employees = () => {
 
         {
             type: 'input',
-            name: 'Id',
+            name: 'id',
             message: 'What is your ID number?'
         },
 
         {
             type: 'input',
-            name: 'Email',
+            name: 'email',
             message: 'What is your Email address?'
         },
         {
@@ -40,20 +39,19 @@ const employees = () => {
     ]).then((getStart) => {
         switch (getStart.position) {
             case "Manager":
-                getManagerInfo();
+                getManagerInfo(getStart);
                 break;
             case "Engineer":
-                getEngineerInfo();
+                getEngineerInfo(getStart);
                 break;
             case "Intern":
-                getInternInfo();
+                getInternInfo(getStart);
                 break;
-            default: buildHtml();
         }
     })
 }
 
-function getManagerInfo() {
+function getManagerInfo(team) {
     inquirer.prompt([
         {
             type: 'input',
@@ -62,13 +60,13 @@ function getManagerInfo() {
 
         }
     ]).then((managerInfo) => {
-        const managerObj = new Manager(managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber)
+        const managerObj = new Manager(team.name, team.id, team.email, managerInfo.officeNumber)
         teamMembers.push(managerObj);
         addEmployee();
     });
 };
 
-function getEngineerInfo() {
+function getEngineerInfo(team) {
     inquirer.prompt([
         {
             type: 'input',
@@ -76,13 +74,13 @@ function getEngineerInfo() {
             message: 'What is your github username?'
         }
     ]).then((engineerInfo) => {
-        const engineerObj = new Engineer(engineerInfo.name, engineerInfo.id, engineerInfo.email, engineerInfo.github)
+        const engineerObj = new Engineer(team.name, team.id, team.email, engineerInfo.github)
         teamMembers.push(engineerObj);
         addEmployee();
     });
 }
 
-function getInternInfo() {
+function getInternInfo(team) {
     inquirer.prompt([
         {
             type: 'input',
@@ -90,7 +88,7 @@ function getInternInfo() {
             message: 'What is the name of the school you attend?'
         }
     ]).then((internInfo) => {
-        const internObj = new Intern(internInfo.name, internInfo.id, internInfo.email, internInfo.school)
+        const internObj = new Intern(team.name, team.id, team.email, internInfo.school)
         teamMembers.push(internObj);
         addEmployee();
     });
@@ -110,16 +108,16 @@ function addEmployee() {
                 employees();
                 break;
             case 'No more employee to add':
-                break;
-        };
+                buildHtml();
+        }
+
     });
 };
 
 function buildHtml() {
-    fs.writeFile(outputPath, render(teamMembers), function (err) {
-        if (err) {
-            return console.log(err)
-        }
+    fs.writeFile('./output/team.html', render(teamMembers), function (err) {
+        if (err) throw err;
+        console.log('generate HTML');
     })
 }
 
