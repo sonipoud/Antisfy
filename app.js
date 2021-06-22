@@ -48,6 +48,7 @@ const employees = () => {
             case "Intern":
                 getInternInfo();
                 break;
+            default: buildHtml();
         }
     })
 }
@@ -101,28 +102,22 @@ function addEmployee() {
             type: 'list',
             message: 'Do you want to add any more employees?',
             name: 'position',
-            choices: ['Manager', 'Engineer', 'Intern', 'No more employee to add'],
+            choices: ['Yes', 'No more employee to add'],
         }
     ]).then((user) => {
         switch (user.position) {
-            case "Manager":
+            case 'Yes':
                 employees();
                 break;
-            case "Engineer":
-                employees();
+            case 'No more employee to add':
                 break;
-            case "Intern":
-                employees();
-                break;
-            case "No more employee to add":
-            break;         
         };
     });
 };
 
-function buildHtml(){
-    fs.writeFile(outputPath, render(teamMembers), function(err){
-        if(err) {
+function buildHtml() {
+    fs.writeFile(outputPath, render(teamMembers), function (err) {
+        if (err) {
             return console.log(err)
         }
     })
