@@ -1,7 +1,7 @@
 # Team Profile Generator
 
 ## Description
-This is a application built based on Node.js command-line that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. 
+This is a application built based on Node.js command-line that takes in information about employees on a software engineering team that is written in command line and generates an HTML webpage that displays summaries for each person. 
 
 ---
 
@@ -16,14 +16,20 @@ This is a application built based on Node.js command-line that takes in informat
 
 ## Link to video
 
-<iframe src="https://drive.google.com/file/d/1DAaQzVgpOiR3OFPEzH2y7yuUpu9DSsJR/preview" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1od9ICfUksAsDA1HAhAMyq7jaW9ptOxRH/preview" width="640" height="480"></iframe>
 
-
-
+Google drive link:
+https://drive.google.com/file/d/1od9ICfUksAsDA1HAhAMyq7jaW9ptOxRH/view
 
 ---
 
-Starter Code was given by Kevin which included HTML templates, the tests and htmlRenderer.js file. 
+## ScreenShot
+
+![Picture](./images/screenshot.png)
+
+---
+
+Starter Code was given by Kevin, the instructor of the class, which included HTML templates, the tests and htmlRenderer.js file. 
 
 ---
 
