@@ -19,13 +19,13 @@ This is a application built based on Node.js command-line that takes in informat
 <iframe src="https://drive.google.com/file/d/1od9ICfUksAsDA1HAhAMyq7jaW9ptOxRH/preview" width="640" height="480"></iframe>
 
 Google drive link:
-https://drive.google.com/file/d/1od9ICfUksAsDA1HAhAMyq7jaW9ptOxRH/view
+[Click Here](https://drive.google.com/file/d/1od9ICfUksAsDA1HAhAMyq7jaW9ptOxRH/view)
 
 ---
 
 ## ScreenShot
 
-![Picture](./images/screenshot.png)
+![Picture](./images/Screenshot.png)
 
 ---
 
