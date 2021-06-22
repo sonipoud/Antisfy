@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const teamMembers = [];
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -57,39 +58,77 @@ function getManagerInfo() {
             type: 'input',
             name: 'officeNumber',
             message: 'What is your office number?'
-            
+
         }
     ]).then((managerInfo) => {
         const managerObj = new Manager(managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber)
         teamMembers.push(managerObj);
+        addEmployee();
     });
 };
 
-function getEngineerInfo(){
+function getEngineerInfo() {
     inquirer.prompt([
         {
             type: 'input',
             name: 'github',
-            message:'What is your github username?'
+            message: 'What is your github username?'
         }
-    ]).then((engineerInfo)=> {
+    ]).then((engineerInfo) => {
         const engineerObj = new Engineer(engineerInfo.name, engineerInfo.id, engineerInfo.email, engineerInfo.github)
         teamMembers.push(engineerObj);
+        addEmployee();
     });
 }
 
-function getInternInfo(){
+function getInternInfo() {
     inquirer.prompt([
         {
             type: 'input',
             name: 'school',
             message: 'What is the name of the school you attend?'
         }
-    ]).then((internInfo)=> {
-        const internObj = new Intern (internInfo.name, internInfo.id, internInfo.email, internInfo.school)
+    ]).then((internInfo) => {
+        const internObj = new Intern(internInfo.name, internInfo.id, internInfo.email, internInfo.school)
         teamMembers.push(internObj);
+        addEmployee();
     });
 }
+
+function addEmployee() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Do you want to add any more employees?',
+            name: 'position',
+            choices: ['Manager', 'Engineer', 'Intern', 'No more employee to add'],
+        }
+    ]).then((user) => {
+        switch (user.position) {
+            case "Manager":
+                employees();
+                break;
+            case "Engineer":
+                employees();
+                break;
+            case "Intern":
+                employees();
+                break;
+            case "No more employee to add":
+            break;         
+        };
+    });
+};
+
+function buildHtml(){
+    fs.writeFile(outputPath, render(teamMembers), function(err){
+        if(err) {
+            return console.log(err)
+        }
+    })
+}
+
+employees();
 
 
 
