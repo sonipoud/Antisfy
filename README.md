@@ -15,7 +15,10 @@ This is a application built based on Node.js command-line that takes in informat
 ---
 
 ## Link to video
-![Video](https://drive.google.com/file/d/1DAaQzVgpOiR3OFPEzH2y7yuUpu9DSsJR/view)
+
+<iframe src="https://drive.google.com/file/d/1DAaQzVgpOiR3OFPEzH2y7yuUpu9DSsJR/preview" width="640" height="480"></iframe>
+
+
 
 
 ---

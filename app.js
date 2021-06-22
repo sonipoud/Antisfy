@@ -11,85 +11,86 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 //Manager
-const managerQuestions = [
-    {
-        type: 'input',
-        name: 'managerName',
-        message: 'Enter the name of the manager of this team'
-    },
+const employees = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        },
 
-    {
-        type: 'input',
-        name: 'managerId',
-        message: 'What is the managers ID number'
-    },
+        {
+            type: 'input',
+            name: 'Id',
+            message: 'What is your ID number?'
+        },
 
-    {
-        type: 'input',
-        name: 'managerEmail',
-        message: 'What is the managers Email address'
-    },
+        {
+            type: 'input',
+            name: 'Email',
+            message: 'What is your Email address?'
+        },
+        {
+            type: 'list',
+            choices: ['Manager', 'Engineer', 'Intern'],
+            message: 'Please select your position at the company:',
+            name: 'position'
+        }
+    ]).then((getStart) => {
+        switch (getStart.position) {
+            case "Manager":
+                getManagerInfo();
+                break;
+            case "Engineer":
+                getEngineerInfo();
+                break;
+            case "Intern":
+                getInternInfo();
+                break;
+        }
+    })
+}
 
-    {
-        type: 'input',
-        name: 'managerOfficeNumber',
-        message: 'What is the managers office numbers'
-    }
-]
+function getManagerInfo() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'What is your office number?'
+            
+        }
+    ]).then((managerInfo) => {
+        const managerObj = new Manager(managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber)
+        teamMembers.push(managerObj);
+    });
+};
 
-//Engineer
-const engineerQuestions = [
-    {
-        type: 'input',
-        name: 'engineerName',
-        message: 'Enter the name of the engineer of this team'
-    },
+function getEngineerInfo(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'github',
+            message:'What is your github username?'
+        }
+    ]).then((engineerInfo)=> {
+        const engineerObj = new Engineer(engineerInfo.name, engineerInfo.id, engineerInfo.email, engineerInfo.github)
+        teamMembers.push(engineerObj);
+    });
+}
 
-    {
-        type: 'input',
-        name: 'engineerId',
-        message: 'What is the engineer ID number'
-    },
+function getInternInfo(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What is the name of the school you attend?'
+        }
+    ]).then((internInfo)=> {
+        const internObj = new Intern (internInfo.name, internInfo.id, internInfo.email, internInfo.school)
+        teamMembers.push(internObj);
+    });
+}
 
-    {
-        type: 'input',
-        name: 'engineerEmail',
-        message: 'What is the engineer Email address'
-    },
-
-    {
-        type: 'input',
-        name: 'github',
-        message: 'What is the engineer Github user name'
-    }
-]
-
-//Intern
-const internQuestions = [
-    {
-        type: 'input',
-        name: 'internName',
-        message: 'Enter the name of the intern of this team'
-    },
-
-    {
-        type: 'input',
-        name: 'internId',
-        message: 'What is the intern ID number'
-    },
-
-    {
-        type: 'input',
-        name: 'internEmail',
-        message: 'What is the intern Email address'
-    },
-
-    {
-        type: 'input',
-        name: 'school',
-        message: 'What is the intern school name'
-    }
-]
 
 
 
